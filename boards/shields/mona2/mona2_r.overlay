@@ -65,26 +65,17 @@
 
 // Overrides for the input listener node
 &trackball_central_listener {
-    status = "okay";
-    device = <&trackball_central>;
+    status = "okay";
+    device = <&trackball_central>;
 
-    /* AML: MOUSEレイヤー=5, タイムアウト=1500ms（値は好みで） */
-    input-processors = <&zip_temp_layer 5 1500>;
+    scroller {
+        layers = <3>;
+        input-processors = 
+            // <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
+            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
+            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
+            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
+            <&zip_scroll_scaler 1 5>;                           //スクロール量を1/4倍
+    };
 
-    scroller {
-        layers = <3>;
-        input-processors =
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-            <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-            <&zip_scroll_scaler 1 5>;
-    };
 };
-
-
-/* 非マウスキーで即解除 */
-&zip_temp_layer {
-    excluded-positions = <17 18 19>;
-    /* 任意：タイプ直後の誤発火を抑えるなら有効化 */
-    require-prior-idle-ms = <200>;
-
