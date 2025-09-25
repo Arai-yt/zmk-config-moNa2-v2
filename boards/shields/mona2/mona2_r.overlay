@@ -2,80 +2,93 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
-
 &default_transform {
     col-offset = <6>;
 };
 
 &kscan0 {
-        col-gpios
-            = <&xiao_d 10 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 9 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 8 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 7 GPIO_ACTIVE_HIGH> 
-            , <&gpio0 10 GPIO_ACTIVE_HIGH>
-            ;
+    col-gpios =
+        <&xiao_d 10 GPIO_ACTIVE_HIGH>,
+        <&xiao_d 9  GPIO_ACTIVE_HIGH>,
+        <&xiao_d 8  GPIO_ACTIVE_HIGH>,
+        <&xiao_d 7  GPIO_ACTIVE_HIGH>,
+        <&gpio0 10 GPIO_ACTIVE_HIGH>;
 };
 
-
 &pinctrl {
-    spi0_default: spi0_default {    //通常時(SPI通信中)のピン構成
+    spi0_default: spi0_default {    /* 通常時(SPI通信中)のピン構成 */
         group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>, //P0.05を指定(SCLK)
-                <NRF_PSEL(SPIM_MOSI, 0, 4)>,    //P0.04を指定(SDIOだからMOSI,MISO両方の役割を担う)
-                <NRF_PSEL(SPIM_MISO, 0, 4)>;
+            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,   /* P0.05 (SCLK) */
+                    <NRF_PSEL(SPIM_MOSI, 0, 4)>,  /* P0.04 (SDIO) */
+                    <NRF_PSEL(SPIM_MISO, 0, 4)>;
         };
     };
 
-    spi0_sleep: spi0_sleep {    //スリープ時のピン構成(省電力)
+    spi0_sleep: spi0_sleep {    /* スリープ時(省電力)のピン構成 */
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                <NRF_PSEL(SPIM_MISO, 0, 4)>;
+                    <NRF_PSEL(SPIM_MOSI, 0, 4)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 4)>;
             low-power-enable;
         };
     };
 };
 
-
 &spi0 {
     status = "okay";
-    compatible = "nordic,nrf-spim"; //マイコンがnRFシリーズ
+    compatible = "nordic,nrf-spim"; /* nRF 系 */
     pinctrl-0 = <&spi0_default>;
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
-    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;  //P0.09を指定(CS)
+    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;  /* P0.09 (CS) */
 
-  trackball_central: trackball_central@0 {
+    trackball_central: trackball_central@0 {
         status = "okay";
-        compatible = "pixart,pmw3610";  //トラボセンサ用のドライバとバインド
+        compatible = "pixart,pmw3610";  /* トラボセンサ */
         reg = <0>;
         spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; //P0.02を指定(MOTION)
+        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* P0.02 (MOTION) */
         cpi = <600>;
         /* swap-xy; */
-        /* invert-x;  COROPIT版ではコメントアウトを外す */
-        /* invert-y;  COROPIT版ではコメントアウトを外す */
+        /* invert-x;  COROPIT 版では必要に応じて有効化 */
+        /* invert-y;  COROPIT 版では必要に応じて有効化 */
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
     };
 };
 
+/* ==== 既存リスナーの上書き＋AML適用 ==== */
 &trackball_central_listener {
-    status = "okay";
-    device = <&trackball_central>;
+    status = "okay";
+    device = <&trackball_central>;
 
-    input-processors = <&zip_temp_layer 5 10000>;
+    /* AML: レイヤー5を 1500ms 一時ON（必要なら値を調整） */
+    input-processors = <&zip_temp_layer 5 1500>;
 
+    /* スクロール変換（従来どおり） */
     scroller {
         layers = <3>;
-        /* 値リスト内に // コメントを入れず、Cコメントで囲む */
         input-processors =
-            /* <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>, */ /* X軸とY軸の入れ替え */
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       /* X軸反転 */
-            <&zip_xy_to_scroll_mapper>,                         /* スクロールモードに変更 */
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   /* スクロールのX軸反転 */
-            <&zip_scroll_scaler 1 5>;                           /* スクロール量を1/4倍 */
+            /* <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>, */  /* X/Y 入替 */
+            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,        /* X 反転 */
+            <&zip_xy_to_scroll_mapper>,                          /* スクロール化 */
+            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,    /* スクロールX反転 */
+            <&zip_scroll_scaler 1 5>;                            /* スクロール量 1/5 */
     };
 };
+
+/* ==== AML 挙動の調整 ==== */
+/* 非マウスキーを押したら即解除（位置番号は例：J,K,;,Ctrl） */
+&zip_temp_layer {
+    excluded-positions = <18 19 21 34>;
+    /* 直前の打鍵があると起動しない猶予（任意）
+    require-prior-idle-ms = <200>;
+    */
+}
+
+/* クリック/スクロールでも延長したい場合は、ZMK版で該当リスナーがあるときのみ有効化
+&mkp_input_listener { input-processors = <&zip_temp_layer 5 1500>; };
+&msc_input_listener { input-processors = <&zip_temp_layer 5 1500>; };
+*/
+
