@@ -62,17 +62,12 @@
     };
 };
 
-
-/* === リスナー定義 + AML（zip_temp_layer） === */
-
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
 
-    /* AML: MOUSEレイヤー=5, タイムアウト=10000ms（値は好みで） */
     input-processors = <&zip_temp_layer 5 10000>;
 
-    /* 既存のスクロール変換はそのまま */
     scroller {
         layers = <3>;
         input-processors =
@@ -83,8 +78,6 @@
     };
 };
 
-
-/* 非マウスキーで即解除：J,K,;,Ctrl の位置（番号は例） */
 &zip_temp_layer {
     excluded-positions = <17 18 19>;
     /* 任意：タイプ直後の誤発火を抑えるなら有効化 */
