@@ -58,15 +58,12 @@
     };
 };
 
-/* ==== 既存リスナーの上書き＋AML適用 ==== */
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
 
-    /* AML: レイヤー5を 1500ms 一時ON（必要なら値を調整） */
     input-processors = <&zip_temp_layer 5 1500>;
 
-    /* スクロール変換（従来どおり） */
     scroller {
         layers = <3>;
         input-processors =
@@ -78,17 +75,9 @@
     };
 };
 
-/* ==== AML 挙動の調整 ==== */
-/* 非マウスキーを押したら即解除（位置番号は例：J,K,;,Ctrl） */
 &zip_temp_layer {
     excluded-positions = <18 19 21 34>;
     /* 直前の打鍵があると起動しない猶予（任意）
     require-prior-idle-ms = <200>;
     */
 }
-
-/* クリック/スクロールでも延長したい場合は、ZMK版で該当リスナーがあるときのみ有効化
-&mkp_input_listener { input-processors = <&zip_temp_layer 5 1500>; };
-&msc_input_listener { input-processors = <&zip_temp_layer 5 1500>; };
-*/
-
