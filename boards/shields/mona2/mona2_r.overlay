@@ -62,6 +62,13 @@
     };
 };
 
+&zip_temp_layer {
+    excluded-positions = <
+        17 // J
+        18 // K
+        19 // l
+    >;
+};
 
 // Overrides for the input listener node
 &trackball_central_listener {
