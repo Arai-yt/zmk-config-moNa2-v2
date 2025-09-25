@@ -79,9 +79,3 @@
             <&zip_scroll_scaler 1 5>;                           /* スクロール量を1/4倍 */
     };
 };
-
-&zip_temp_layer {
-    excluded-positions = <17 18 19>;
-    /* 任意：タイプ直後の誤発火を抑えるなら有効化 */
-    require-prior-idle-ms = <200>;
-};
