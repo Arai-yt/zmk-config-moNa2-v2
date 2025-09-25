@@ -89,4 +89,4 @@
     excluded-positions = <17 18 19>;
     /* 任意：タイプ直後の誤発火を抑えるなら有効化 */
     require-prior-idle-ms = <200>;
-
+};
