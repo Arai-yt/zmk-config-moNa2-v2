@@ -146,13 +146,9 @@
 /* ---------- PMW3610（SPI0 配下） ---------- */
 &spi0 {
     status = "okay";
-
-    /* pinctrl の紐付け */
     pinctrl-0 = <&spi0_default>;
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
-
-    /* CS/IRQ は実配線に合わせて（例: CS=D10, IRQ=D9） */
     cs-gpios = <&xiao_d 10 GPIO_ACTIVE_LOW>;
 
     pmw3610_tb: pmw3610@0 {
@@ -161,12 +157,13 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
 
-        /* ↓ ドライバ要求の “必須” プロパティ（相対移動イベントと軸コード） */
-        evt-type = <INPUT_EV_REL>;
-        x-code   = <INPUT_REL_X>;
-        y-code   = <INPUT_REL_Y>;
-        /* 必要ならスクロール用も（任意）
-         * wheel-code = <INPUT_REL_WHEEL>;
+        /* ← ここを修正（必須プロパティ） */
+        evt-type      = <INPUT_EV_REL>;
+        x-input-code  = <INPUT_REL_X>;
+        y-input-code  = <INPUT_REL_Y>;
+        /* 任意でスクロールも使うなら：
+         * wheel-input-code  = <INPUT_REL_WHEEL>;
+         * hwheel-input-code = <INPUT_REL_HWHEEL>;
          */
 
         /* cpi = <1600>; // ドライバが対応していれば解像度指定 */
