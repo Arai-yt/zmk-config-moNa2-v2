@@ -48,11 +48,13 @@
             #binding-cells = <0>;
             wait-ms = <40>;
             tap-ms = <40>;
-            bindings
-               = <&macro_press   &kp LALT>
-               , <&macro_tap     &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N5>
-               , <&macro_release &kp LALT>
-               ;
+            bindings =
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N5>,
+                <&macro_release>,
+                <&kp LALT>;
         };
     };
 
@@ -161,6 +163,15 @@
             >;
 
             sensor-bindings = <&scroll_up_down>;
+        };
+
+        Gesture {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
+            >;
         };
     };
 };
