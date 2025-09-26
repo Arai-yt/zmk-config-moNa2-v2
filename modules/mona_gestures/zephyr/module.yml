@@ -1,4 +1,5 @@
-name: mona_gestures
 build:
   cmake: .
-dts_root: .
+  kconfig: Kconfig
+  settings:
+    dts_root: .
