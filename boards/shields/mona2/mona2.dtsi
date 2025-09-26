@@ -2,10 +2,10 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
-#include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>   /* NRF_PSEL 用 */
-#include <zephyr/dt-bindings/input/input-event-codes.h>  /* ← 追加: INPUT_EV_REL/INPUT_REL_* 用 */
+#include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
- / {
+/ {
     chosen {
         zmk,physical-layout = &physical_layout0;
     };
@@ -85,23 +85,18 @@
                     <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
-    /* 右手（中央）トラックボールの Input Listener */
-    trackball_central_listener: trackball_central_listener {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&pmw3610_tb>;
-
-        /* 必要に応じて軸補正 */
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;
-
-        /* 例：ジェスチャーレイヤ中だけ移動→スクロール化
-        gest_only {
-            layers = <_GEST>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
-        };
-        */
+    /* ---- 入力プロセッサ：方向フリック -> ショートカット ---- */
+    dir_gestures: dir_gestures {
+        compatible = "mona,dir-gestures";
+        threshold = <700>;      /* 600〜900で調整：下げる＝敏感 / 上げる＝鈍く */
+        timeout-ms = <200>;     /* 150〜250で調整：短いほど素早い動きだけ */
+        bindings-up    = <&kp LG(W)>;      /* 上：Cmd/Win+W（タブ閉じ） */
+        bindings-down  = <&kp LG(T)>;      /* 下：Cmd/Win+T（新規タブ） */
+        bindings-left  = <&kp LG(LBKT)>;   /* 左：前のタブ/戻る */
+        bindings-right = <&kp LG(RBKT)>;   /* 右：次のタブ/進む */
     };
 
+    /* ---- エンコーダ（未使用なら disabled のまま） ---- */
     left_encoder: encoder_left {
         compatible = "alps,ec11";
         a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
@@ -121,12 +116,11 @@
     };
 }; /* / */
 
-
-/* ---------- pinctrl（SPI0 のピン割り当て：必須） ---------- */
+/* ---------- pinctrl（SPI0 のピン割り当て） ---------- */
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
-            /* 例: SCK=P0.13, MOSI=P0.14, MISO=P0.15 */
+            /* 例: SCK=P0.13, MOSI=P0.14, MISO=P0.15（実配線に合わせて変更可） */
             psels = <NRF_PSEL(SPIM_SCK,  0, 13)
                      NRF_PSEL(SPIM_MOSI, 0, 14)
                      NRF_PSEL(SPIM_MISO, 0, 15)>;
@@ -140,15 +134,18 @@
             low-power-enable;
         };
     };
-}; /* ← セミコロン忘れがち */
-
+};
 
 /* ---------- PMW3610（SPI0 配下） ---------- */
 &spi0 {
     status = "okay";
+
+    /* pinctrl の紐付け */
     pinctrl-0 = <&spi0_default>;
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
+
+    /* 例: CS = D10（実配線に合わせて変更） */
     cs-gpios = <&xiao_d 10 GPIO_ACTIVE_LOW>;
 
     pmw3610_tb: pmw3610@0 {
@@ -157,36 +154,39 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
 
-        /* ← ここを修正（必須プロパティ） */
+        /* 入力イベントの種別と軸コード（必須） */
         evt-type      = <INPUT_EV_REL>;
         x-input-code  = <INPUT_REL_X>;
         y-input-code  = <INPUT_REL_Y>;
-        /* 任意でスクロールも使うなら：
-         * wheel-input-code  = <INPUT_REL_WHEEL>;
-         * hwheel-input-code = <INPUT_REL_HWHEEL>;
-         */
+        /* wheel-input-code / hwheel-input-code を使うならここに追加 */
 
-        /* cpi = <1600>; // ドライバが対応していれば解像度指定 */
+        /* センサ解像度（任意） */
+        /* cpi = <1600>; */
+
         status = "okay";
     };
 };
 
-/ {
-    dir_gestures: dir_gestures {
-        compatible = "mona,dir-gestures";
-        threshold = <700>;
-        timeout-ms = <200>;
-        bindings-up    = <&kp LG(W)>;
-        bindings-down  = <&kp LG(T)>;
-        bindings-left  = <&kp LG(LBKT)>;
-        bindings-right = <&kp LG(RBKT)>;
-    };
-};
-
+/* ---------- 右手（中央）トラックボールの Input Listener ---------- */
 &trackball_central_listener {
+    compatible = "zmk,input-listener";
+    status = "okay";
+    device = <&pmw3610_tb>;
+
+    /* 必要に応じて軸補正：X/Y 反転や XY 入替 */
+    input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;
+
+    /* レイヤ7（Gesture）の間だけ、方向フリック検出を有効化 */
     gest_dir_only {
-        layers = <7>;
+        layers = <7>;                         /* keymap の Gesture=7 と一致させる */
         input-processors = <&dir_gestures>;
     };
-};
 
+    /* ※ スクロール変換は衝突を避けるため未適用。
+       もし使いたい場合は別レイヤ（例: 6）に限定して有効化する：
+       gest_only {
+           layers = <6>;
+           input-processors = <&zip_xy_to_scroll_mapper>;
+       };
+    */
+}
