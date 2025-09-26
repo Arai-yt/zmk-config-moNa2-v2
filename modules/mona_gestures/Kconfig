@@ -1,6 +1,0 @@
-menu "moNa extras"
-config MONA_DIR_GESTURES
-    bool "Directional gestures input processor"
-    default y
-    select ZMK_INPUT_PROCESSORS
-endmenu
