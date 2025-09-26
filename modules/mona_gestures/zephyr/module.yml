@@ -1,0 +1,4 @@
+name: mona_gestures
+build:
+  cmake: .
+dts_root: .
