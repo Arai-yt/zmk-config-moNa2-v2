@@ -3,6 +3,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>   /* NRF_PSEL 用 */
+#include <zephyr/dt-bindings/input/input-event-codes.h>  /* ← 追加: INPUT_EV_REL/INPUT_REL_* 用 */
 
  / {
     chosen {
@@ -159,6 +160,15 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
+
+        /* ↓ ドライバ要求の “必須” プロパティ（相対移動イベントと軸コード） */
+        evt-type = <INPUT_EV_REL>;
+        x-code   = <INPUT_REL_X>;
+        y-code   = <INPUT_REL_Y>;
+        /* 必要ならスクロール用も（任意）
+         * wheel-code = <INPUT_REL_WHEEL>;
+         */
+
         /* cpi = <1600>; // ドライバが対応していれば解像度指定 */
         status = "okay";
     };
