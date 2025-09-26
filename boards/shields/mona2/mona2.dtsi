@@ -93,7 +93,7 @@
 
         // 軸補正（必要に応じて調整）
         input-processors =
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;  // X軸反転
+            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;
         /*
         // 例：ジェスチャーレイヤ中だけ移動→スクロール化する場合
         gest_only {
@@ -124,20 +124,43 @@
 }; // /
 
 
-/* ===== PMW3610 実デバイス（SPI） =====
- * 配線に合わせて CS/IRQ の GPIO は調整してください。
- * SCK/MOSI/MISO のピンは基板側（ボード定義）で設定済みである前提です。
- */
+/* ===== pinctrl（SPI0 の配線指定：必須） ===== */
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            /* 例: SCK=P0.13, MOSI=P0.14, MISO=P0.15 */
+            psels = <NRF_SPIM_SCK_PIN(13)>,
+                    <NRF_SPIM_MOSI_PIN(14)>,
+                    <NRF_SPIM_MISO_PIN(15)>;
+        };
+    };
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <NRF_SPIM_SCK_PIN(13)>,
+                    <NRF_SPIM_MOSI_PIN(14)>,
+                    <NRF_SPIM_MISO_PIN(15)>;
+            low-power-enable;
+        };
+    };
+}
+
+/* ===== PMW3610 実デバイス（SPI0 配下） ===== */
 &spi0 {
     status = "okay";
+    /* pinctrl は必須 */
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+
+    /* CS/IRQ はあなたの配線に合わせて（例: CS=D10, IRQ=D9） */
     cs-gpios = <&xiao_d 10 GPIO_ACTIVE_LOW>;
 
     pmw3610_tb: pmw3610@0 {
-        compatible = "pixart,pmw3610";      // ドライバのcompatible名
+        compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
-        irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>; // 割込線があれば
-        // cpi = <1600>;                      // ドライバが対応していれば解像度指定
+        irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
+        // cpi = <1600>;
         status = "okay";
     };
 };
