@@ -171,6 +171,25 @@
     };
 };
 
+/ {
+    dir_gestures: dir_gestures {
+        compatible = "mona,dir-gestures";
+        threshold = <700>;
+        timeout-ms = <200>;
+        bindings-up    = <&kp LG(W)>;
+        bindings-down  = <&kp LG(T)>;
+        bindings-left  = <&kp LG(LBKT)>;
+        bindings-right = <&kp LG(RBKT)>;
+    };
+};
+
+&trackball_central_listener {
+    gest_dir_only {
+        layers = <7>;
+        input-processors = <&dir_gestures>;
+    };
+};
+
 &trackball_central_listener {
     /* レイヤ7が有効なときだけ、XYをスクロールに変換 */
     gest_only {
