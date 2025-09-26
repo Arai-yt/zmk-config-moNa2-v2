@@ -4,7 +4,21 @@
 #include <zephyr/devicetree.h>
 #include <zephyr/init.h>
 #include <zephyr/logging/log.h>
-#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <zephyr/sys/util.h>  /* ABS() 用 */
+
+// --- 入力コードの取得（ヘッダが無い環境でも動くフォールバック） ---
+#ifndef __has_include
+  #define __has_include(x) 0
+#endif
+#if __has_include(<zephyr/dt-bindings/input/input-event-codes.h>)
+  #include <zephyr/dt-bindings/input/input-event-codes.h>
+#elif __has_include(<dt-bindings/input/input-event-codes.h>)
+  #include <dt-bindings/input/input-event-codes.h>
+#else
+  #define INPUT_EV_REL 0x02
+  #define INPUT_REL_X  0x00
+  #define INPUT_REL_Y  0x01
+#endif
 
 #include <zmk/event_manager.h>
 #include <zmk/behaviors.h>
