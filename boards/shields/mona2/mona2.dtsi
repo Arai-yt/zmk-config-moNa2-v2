@@ -170,3 +170,11 @@
         status = "okay";
     };
 };
+
+&trackball_central_listener {
+    /* レイヤ7が有効なときだけ、XYをスクロールに変換 */
+    gest_only {
+        layers = <7>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
+    };
+};
