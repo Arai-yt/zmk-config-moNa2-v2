@@ -1,0 +1,23 @@
+#include <mouse-gesture.dtsi>
+
+&zip_mouse_gesture {
+    stroke-size = <300>;
+    enable-eager-mode;
+
+    prev_tab {
+        pattern = <GESTURE_LEFT>;
+        bindings = <&kp LC(LS(TAB))>; // Ctrl+Shift+Tab
+    };
+    next_tab {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp LC(TAB)>;     // Ctrl+Tab
+    };
+    new_tab {
+        pattern = <GESTURE_UP>;
+        bindings = <&kp LC(T)>;       // Ctrl+T
+    };
+    close_tab {
+        pattern = <GESTURE_DOWN>;
+        bindings = <&kp LC(W)>;       // Ctrl+W
+    };
+};
