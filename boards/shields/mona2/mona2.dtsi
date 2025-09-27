@@ -181,6 +181,8 @@ trackball_central_listener: trackball_central_listener {
 
     input-processors = <
         &zip_xy_transform INPUT_TRANSFORM_X_INVERT
+    >,
+    <
         &zip_mouse_gesture
     >;
 };
