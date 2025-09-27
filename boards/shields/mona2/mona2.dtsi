@@ -4,6 +4,8 @@
 #include <physical_layouts.dtsi>
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>   /* NRF_PSEL 用 */
 #include <zephyr/dt-bindings/input/input-event-codes.h>  /* ← 追加: INPUT_EV_REL/INPUT_REL_* 用 */
+#include <mouse-gesture.dtsi>   /* kot149モジュールのdtsi */
+
 
  / {
     chosen {
@@ -171,10 +173,14 @@
     };
 };
 
-&trackball_central_listener {
-    /* レイヤ7が有効なときだけ、XYをスクロールに変換 */
-    gest_only {
-        layers = <7>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
-    };
+
+trackball_central_listener: trackball_central_listener {
+    compatible = "zmk,input-listener";
+    status = "okay";
+    device = <&pmw3610_tb>;
+
+    input-processors = <
+        &zip_xy_transform INPUT_TRANSFORM_X_INVERT
+        &zip_mouse_gesture
+    >;
 };
