@@ -4,63 +4,60 @@
 #include <physical_layouts.dtsi>
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>   /* NRF_PSEL 用 */
 #include <zephyr/dt-bindings/input/input-event-codes.h>  /* INPUT_EV_REL/INPUT_REL_* 用 */
-#include <mouse-gesture.dtsi>   /* kot149モジュールのdtsi（※他で重複includeしない） */
+#include <mouse-gesture.dtsi>   /* kot149さんモジュールのdtsi */
 
  / {
-    chosen {
-        zmk,physical-layout = &physical_layout0;
-    };
+    chosen { zmk,physical-layout = &physical_layout0; };
 
     physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
         display-name = "default_layout";
-
         kscan = <&kscan0>;
         transform = <&default_transform>;
 
-        keys  /*                    w   h    x    y     rot   rx   ry */
-            = <&key_physical_attrs 100 100    0    0      0    0    0>
-            , <&key_physical_attrs 100 100  100    0      0    0    0>
-            , <&key_physical_attrs 100 100  200    0      0    0    0>
-            , <&key_physical_attrs 100 100  300    0      0    0    0>
-            , <&key_physical_attrs 100 100  400    0      0    0    0>
-            , <&key_physical_attrs 100 100  800    0      0    0    0>
-            , <&key_physical_attrs 100 100  900    0      0    0    0>
-            , <&key_physical_attrs 100 100 1000    0      0    0    0>
-            , <&key_physical_attrs 100 100 1100    0      0    0    0>
-            , <&key_physical_attrs 100 100 1200    0      0    0    0>
-            , <&key_physical_attrs 100 100    0  100      0    0    0>
-            , <&key_physical_attrs 100 100  100  100      0    0    0>
-            , <&key_physical_attrs 100 100  200  100      0    0    0>
-            , <&key_physical_attrs 100 100  300  100      0    0    0>
-            , <&key_physical_attrs 100 100  400  100      0    0    0>
-            , <&key_physical_attrs 100 100  700  100      0    0    0>
-            , <&key_physical_attrs 100 100  800  100      0    0    0>
-            , <&key_physical_attrs 100 100  900  100      0    0    0>
-            , <&key_physical_attrs 100 100 1000  100      0    0    0>
-            , <&key_physical_attrs 100 100 1100  100      0    0    0>
-            , <&key_physical_attrs 100 100 1200  100      0    0    0>
-            , <&key_physical_attrs 100 100    0  200      0    0    0>
-            , <&key_physical_attrs 100 100  100  200      0    0    0>
-            , <&key_physical_attrs 100 100  200  200      0    0    0>
-            , <&key_physical_attrs 100 100  300  200      0    0    0>
-            , <&key_physical_attrs 100 100  400  200      0    0    0>
-            , <&key_physical_attrs 100 100  500  200      0    0    0>
-            , <&key_physical_attrs 100 100  700  200      0    0    0>
-            , <&key_physical_attrs 100 100  800  200      0    0    0>
-            , <&key_physical_attrs 100 100  900  200      0    0    0>
-            , <&key_physical_attrs 100 100 1000  200      0    0    0>
-            , <&key_physical_attrs 100 100 1100  200      0    0    0>
-            , <&key_physical_attrs 100 100 1200  200      0    0    0>
-            , <&key_physical_attrs 100 100    0  300      0    0    0>
-            , <&key_physical_attrs 100 100  100  300      0    0    0>
-            , <&key_physical_attrs 100 100  200  300      0    0    0>
-            , <&key_physical_attrs 100 100  300  300      0    0    0>
-            , <&key_physical_attrs 100 100  400  300      0    0    0>
-            , <&key_physical_attrs 100 100  500  300      0    0    0>
-            , <&key_physical_attrs 100 100  700  300      0    0    0>
-            , <&key_physical_attrs 100 100  800  300      0    0    0>
-            , <&key_physical_attrs 100 100 1200  300      0    0    0>
+        keys
+            = <&key_physical_attrs 100 100    0    0  0 0 0>
+            , <&key_physical_attrs 100 100  100    0  0 0 0>
+            , <&key_physical_attrs 100 100  200    0  0 0 0>
+            , <&key_physical_attrs 100 100  300    0  0 0 0>
+            , <&key_physical_attrs 100 100  400    0  0 0 0>
+            , <&key_physical_attrs 100 100  800    0  0 0 0>
+            , <&key_physical_attrs 100 100  900    0  0 0 0>
+            , <&key_physical_attrs 100 100 1000    0  0 0 0>
+            , <&key_physical_attrs 100 100 1100    0  0 0 0>
+            , <&key_physical_attrs 100 100 1200    0  0 0 0>
+            , <&key_physical_attrs 100 100    0  100  0 0 0>
+            , <&key_physical_attrs 100 100  100  100  0 0 0>
+            , <&key_physical_attrs 100 100  200  100  0 0 0>
+            , <&key_physical_attrs 100 100  300  100  0 0 0>
+            , <&key_physical_attrs 100 100  400  100  0 0 0>
+            , <&key_physical_attrs 100 100  700  100  0 0 0>
+            , <&key_physical_attrs 100 100  800  100  0 0 0>
+            , <&key_physical_attrs 100 100  900  100  0 0 0>
+            , <&key_physical_attrs 100 100 1000  100  0 0 0>
+            , <&key_physical_attrs 100 100 1100  100  0 0 0>
+            , <&key_physical_attrs 100 100 1200  100  0 0 0>
+            , <&key_physical_attrs 100 100    0  200  0 0 0>
+            , <&key_physical_attrs 100 100  100  200  0 0 0>
+            , <&key_physical_attrs 100 100  200  200  0 0 0>
+            , <&key_physical_attrs 100 100  300  200  0 0 0>
+            , <&key_physical_attrs 100 100  400  200  0 0 0>
+            , <&key_physical_attrs 100 100  500  200  0 0 0>
+            , <&key_physical_attrs 100 100  700  200  0 0 0>
+            , <&key_physical_attrs 100 100  800  200  0 0 0>
+            , <&key_physical_attrs 100 100  900  200  0 0 0>
+            , <&key_physical_attrs 100 100 1000  200  0 0 0>
+            , <&key_physical_attrs 100 100 1100  200  0 0 0>
+            , <&key_physical_attrs 100 100 1200  200  0 0 0>
+            , <&key_physical_attrs 100 100    0  300  0 0 0>
+            , <&key_physical_attrs 100 100  100  300  0 0 0>
+            , <&key_physical_attrs 100 100  200  300  0 0 0>
+            , <&key_physical_attrs 100 100  300  300  0 0 0>
+            , <&key_physical_attrs 100 100  400  300  0 0 0>
+            , <&key_physical_attrs 100 100  500  300  0 0 0>
+            , <&key_physical_attrs 100 100  700  300  0 0 0>
+            , <&key_physical_attrs 100 100  800  300  0 0 0>
+            , <&key_physical_attrs 100 100 1200  300  0 0 0>
             ;
     };
 
@@ -92,16 +89,7 @@
         status = "okay";
         device = <&pmw3610_tb>;
 
-        /* 補正 → ジェスチャー の順で適用 */
-        input-processors = <&zip_input_transform INPUT_TRANSFORM_X_INVERT>,
-                           <&zip_mouse_gesture>;
-
-        /* 例：ジェスチャーレイヤ中だけ移動→スクロール化（必要時に有効化）
-        // gest_only {
-        //     layers = <7>;
-        //     input-processors = <&zip_xy_to_scroll_mapper>;
-        // };
-        */
+        input-processors = <&zip_mouse_gesture>;
     };
 
     left_encoder: encoder_left {
@@ -112,21 +100,19 @@
         status = "disabled";
     };
 
-    right_encoder: encoder_right {
-        status = "disabled";
-    };
+    right_encoder: encoder_right { status = "disabled"; };
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <10>;
     };
-}; /* / */
+};
 
+/* ---------- pinctrl（SPI0 のピン割り当て：必須） ---------- */
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
-            /* 例: SCK=P0.13, MOSI=P0.14, MISO=P0.15 */
             psels = <NRF_PSEL(SPIM_SCK,  0, 13)
                      NRF_PSEL(SPIM_MOSI, 0, 14)
                      NRF_PSEL(SPIM_MISO, 0, 15)>;
@@ -140,7 +126,7 @@
             low-power-enable;
         };
     };
-}; 
+};
 
 /* ---------- PMW3610（SPI0 配下） ---------- */
 &spi0 {
@@ -159,12 +145,11 @@
         evt-type      = <INPUT_EV_REL>;
         x-input-code  = <INPUT_REL_X>;
         y-input-code  = <INPUT_REL_Y>;
-        /* 任意でスクロールも使うなら：
-         * wheel-input-code  = <INPUT_REL_WHEEL>;
+        /* wheel-input-code  = <INPUT_REL_WHEEL>;
          * hwheel-input-code = <INPUT_REL_HWHEEL>;
          */
-
-        /* cpi = <1600>; // ドライバが対応していれば解像度指定 */
+        /* cpi = <1600>; */
         status = "okay";
     };
 };
+
