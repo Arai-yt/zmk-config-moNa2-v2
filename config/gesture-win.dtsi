@@ -1,17 +1,12 @@
 &zip_mouse_gesture {
-    enable-eager-mode;
     stroke-size = <300>;
     movement-threshold = <8>;
     idle-timeout-ms = <200>;
     gesture-cooldown-ms = <120>;
+    enable-eager-mode;
 
-    // --- Layer 7 でだけ発火 ---
-    prev_tab  { layers = <7>; pattern = <GESTURE_LEFT>;  bindings = <&kp LC(LS(TAB))>; };
-    next_tab  { layers = <7>; pattern = <GESTURE_RIGHT>; bindings = <&kp LC(TAB)>;     };
-    new_tab   { layers = <7>; pattern = <GESTURE_UP>;    bindings = <&kp LC(T)>;       };
-    close_tab { layers = <7>; pattern = <GESTURE_DOWN>;  bindings = <&kp LC(W)>;       };
-
-    // 例：Layer 8 は別セットにすることも可能
-    // os_left  { layers = <8>; pattern = <GESTURE_LEFT>;  bindings = <&kp LG(LEFT)>;  };
-    // os_right { layers = <8>; pattern = <GESTURE_RIGHT>; bindings = <&kp LG(RIGHT)>; };
+    prev_tab  { pattern = <GESTURE_LEFT>;  bindings = <&kp LC(LS(TAB))>; };
+    next_tab  { pattern = <GESTURE_RIGHT>; bindings = <&kp LC(TAB)>;     };
+    new_tab   { pattern = <GESTURE_UP>;    bindings = <&kp LC(T)>;       };
+    close_tab { pattern = <GESTURE_DOWN>;  bindings = <&kp LC(W)>;       };
 };
