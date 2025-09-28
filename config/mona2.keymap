@@ -85,14 +85,6 @@
 
             tap-ms = <20>;
         };
-        gesture_ht: gesture_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "GESTURE_HT";
-            #binding-cells = <2>;
-            flavor = "tap-preferred"; 
-            tapping-term-ms = <220>;       // 200→220〜250でタップが出やすくなる
-            bindings = <&kp>, <&mouse_gesture>;   // tap=&kp / hold=&mouse_gesture
-        };
     };
 
     keymap {
