@@ -183,12 +183,3 @@
         status = "okay";
     };
 };
-
-/* ── レイヤ限定の入力プロセッサ差し込み（オーバレイで分離） ── */
-&trackball_central_listener {
-    /* Layer 7 の間だけ zip_mouse_gesture を有効化 */
-    gest_on_l7 {
-        layers = <7>;
-        input-processors = <&zip_mouse_gesture>;
-    };
-};
