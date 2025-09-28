@@ -92,6 +92,21 @@
         input-processors = <&zip_mouse_gesture>;
     };
 
+
+ /* 右手（中央）トラックボールの Input Listener */
+    trackball_central_listener: trackball_central_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&pmw3610_tb>;
+
+    /* Layer 7 の間だけ zip_mouse_gesture を有効化 */
+        gest_on_l7 {
+            layers = <7>;
+            input-processors = <&zip_mouse_gesture>;
+    };
+};
+
+
     left_encoder: encoder_left {
         compatible = "alps,ec11";
         a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
