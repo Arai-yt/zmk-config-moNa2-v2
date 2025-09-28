@@ -2,62 +2,65 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
-#include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>   /* NRF_PSEL 用 */
-#include <zephyr/dt-bindings/input/input-event-codes.h>  /* INPUT_EV_REL/INPUT_REL_* 用 */
-#include <mouse-gesture.dtsi>   /* kot149さんモジュールのdtsi */
+#include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <mouse-gesture.dtsi>   /* kot149 モジュールの dtsi */
 
  / {
-    chosen { zmk,physical-layout = &physical_layout0; };
+    chosen {
+        zmk,physical-layout = &physical_layout0;
+    };
 
     physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
         display-name = "default_layout";
+
         kscan = <&kscan0>;
         transform = <&default_transform>;
 
-        keys
-            = <&key_physical_attrs 100 100    0    0  0 0 0>
-            , <&key_physical_attrs 100 100  100    0  0 0 0>
-            , <&key_physical_attrs 100 100  200    0  0 0 0>
-            , <&key_physical_attrs 100 100  300    0  0 0 0>
-            , <&key_physical_attrs 100 100  400    0  0 0 0>
-            , <&key_physical_attrs 100 100  800    0  0 0 0>
-            , <&key_physical_attrs 100 100  900    0  0 0 0>
-            , <&key_physical_attrs 100 100 1000    0  0 0 0>
-            , <&key_physical_attrs 100 100 1100    0  0 0 0>
-            , <&key_physical_attrs 100 100 1200    0  0 0 0>
-            , <&key_physical_attrs 100 100    0  100  0 0 0>
-            , <&key_physical_attrs 100 100  100  100  0 0 0>
-            , <&key_physical_attrs 100 100  200  100  0 0 0>
-            , <&key_physical_attrs 100 100  300  100  0 0 0>
-            , <&key_physical_attrs 100 100  400  100  0 0 0>
-            , <&key_physical_attrs 100 100  700  100  0 0 0>
-            , <&key_physical_attrs 100 100  800  100  0 0 0>
-            , <&key_physical_attrs 100 100  900  100  0 0 0>
-            , <&key_physical_attrs 100 100 1000  100  0 0 0>
-            , <&key_physical_attrs 100 100 1100  100  0 0 0>
-            , <&key_physical_attrs 100 100 1200  100  0 0 0>
-            , <&key_physical_attrs 100 100    0  200  0 0 0>
-            , <&key_physical_attrs 100 100  100  200  0 0 0>
-            , <&key_physical_attrs 100 100  200  200  0 0 0>
-            , <&key_physical_attrs 100 100  300  200  0 0 0>
-            , <&key_physical_attrs 100 100  400  200  0 0 0>
-            , <&key_physical_attrs 100 100  500  200  0 0 0>
-            , <&key_physical_attrs 100 100  700  200  0 0 0>
-            , <&key_physical_attrs 100 100  800  200  0 0 0>
-            , <&key_physical_attrs 100 100  900  200  0 0 0>
-            , <&key_physical_attrs 100 100 1000  200  0 0 0>
-            , <&key_physical_attrs 100 100 1100  200  0 0 0>
-            , <&key_physical_attrs 100 100 1200  200  0 0 0>
-            , <&key_physical_attrs 100 100    0  300  0 0 0>
-            , <&key_physical_attrs 100 100  100  300  0 0 0>
-            , <&key_physical_attrs 100 100  200  300  0 0 0>
-            , <&key_physical_attrs 100 100  300  300  0 0 0>
-            , <&key_physical_attrs 100 100  400  300  0 0 0>
-            , <&key_physical_attrs 100 100  500  300  0 0 0>
-            , <&key_physical_attrs 100 100  700  300  0 0 0>
-            , <&key_physical_attrs 100 100  800  300  0 0 0>
-            , <&key_physical_attrs 100 100 1200  300  0 0 0>
+        keys  /*                    w   h    x    y     rot   rx   ry */
+            = <&key_physical_attrs 100 100    0    0      0    0    0>
+            , <&key_physical_attrs 100 100  100    0      0    0    0>
+            , <&key_physical_attrs 100 100  200    0      0    0    0>
+            , <&key_physical_attrs 100 100  300    0      0    0    0>
+            , <&key_physical_attrs 100 100  400    0      0    0    0>
+            , <&key_physical_attrs 100 100  800    0      0    0    0>
+            , <&key_physical_attrs 100 100  900    0      0    0    0>
+            , <&key_physical_attrs 100 100 1000    0      0    0    0>
+            , <&key_physical_attrs 100 100 1100    0      0    0    0>
+            , <&key_physical_attrs 100 100 1200    0      0    0    0>
+            , <&key_physical_attrs 100 100    0  100      0    0    0>
+            , <&key_physical_attrs 100 100  100  100      0    0    0>
+            , <&key_physical_attrs 100 100  200  100      0    0    0>
+            , <&key_physical_attrs 100 100  300  100      0    0    0>
+            , <&key_physical_attrs 100 100  400  100      0    0    0>
+            , <&key_physical_attrs 100 100  700  100      0    0    0>
+            , <&key_physical_attrs 100 100  800  100      0    0    0>
+            , <&key_physical_attrs 100 100  900  100      0    0    0>
+            , <&key_physical_attrs 100 100 1000  100      0    0    0>
+            , <&key_physical_attrs 100 100 1100  100      0    0    0>
+            , <&key_physical_attrs 100 100 1200  100      0    0    0>
+            , <&key_physical_attrs 100 100    0  200      0    0    0>
+            , <&key_physical_attrs 100 100  100  200      0    0    0>
+            , <&key_physical_attrs 100 100  200  200      0    0    0>
+            , <&key_physical_attrs 100 100  300  200      0    0    0>
+            , <&key_physical_attrs 100 100  400  200      0    0    0>
+            , <&key_physical_attrs 100 100  500  200      0    0    0>
+            , <&key_physical_attrs 100 100  700  200      0    0    0>
+            , <&key_physical_attrs 100 100  800  200      0    0    0>
+            , <&key_physical_attrs 100 100  900  200      0    0    0>
+            , <&key_physical_attrs 100 100 1000  200      0    0    0>
+            , <&key_physical_attrs 100 100 1100  200      0    0    0>
+            , <&key_physical_attrs 100 100 1200  200      0    0    0>
+            , <&key_physical_attrs 100 100    0  300      0    0    0>
+            , <&key_physical_attrs 100 100  100  300      0    0    0>
+            , <&key_physical_attrs 100 100  200  300      0    0    0>
+            , <&key_physical_attrs 100 100  300  300      0    0    0>
+            , <&key_physical_attrs 100 100  400  300      0    0    0>
+            , <&key_physical_attrs 100 100  500  300      0    0    0>
+            , <&key_physical_attrs 100 100  700  300      0    0    0>
+            , <&key_physical_attrs 100 100  800  300      0    0    0>
+            , <&key_physical_attrs 100 100 1200  300      0    0    0>
             ;
     };
 
@@ -83,15 +86,18 @@
                     <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
-/* 右手（中央）トラックボールの Input Listener */
-trackball_central_listener: trackball_central_listener {
-    compatible = "zmk,input-listener";
-    status = "okay";
-    device = <&pmw3610_tb>;
+    /* 右手（中央）トラックボールの Input Listener */
+    trackball_central_listener: trackball_central_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&pmw3610_tb>;
 
-    /* ★テスト用：常時ジェスチャー有効 */
-    input-processors = <&zip_mouse_gesture>;
-};
+        /* ← Layer 7 の間だけ zip_mouse_gesture を有効化 */
+        gest_on_l7 {
+            layers = <7>;
+            input-processors = <&zip_mouse_gesture>;
+        };
+    };
 
     left_encoder: encoder_left {
         compatible = "alps,ec11";
@@ -101,16 +107,18 @@ trackball_central_listener: trackball_central_listener {
         status = "disabled";
     };
 
-    right_encoder: encoder_right { status = "disabled"; };
+    right_encoder: encoder_right {
+        status = "disabled";
+    };
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <10>;
     };
-};
+}; /* / */
 
-/* ---------- pinctrl（SPI0 のピン割り当て：必須） ---------- */
+/* ---------- pinctrl（SPI0 のピン割り当て） ---------- */
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
@@ -143,6 +151,7 @@ trackball_central_listener: trackball_central_listener {
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
 
+        /* ← 相対移動（XY）を使う設定 */
         evt-type      = <INPUT_EV_REL>;
         x-input-code  = <INPUT_REL_X>;
         y-input-code  = <INPUT_REL_Y>;
