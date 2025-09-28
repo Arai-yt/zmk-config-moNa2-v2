@@ -3,9 +3,8 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>   /* NRF_PSEL 用 */
-#include <zephyr/dt-bindings/input/input-event-codes.h>  /* ← 追加: INPUT_EV_REL/INPUT_REL_* 用 */
-#include <mouse-gesture.dtsi>   /* kot149モジュールのdtsi */
-
+#include <zephyr/dt-bindings/input/input-event-codes.h>  /* INPUT_EV_REL/INPUT_REL_* 用 */
+#include <mouse-gesture.dtsi>   /* kot149モジュールのdtsi（※他で重複includeしない） */
 
  / {
     chosen {
@@ -93,14 +92,15 @@
         status = "okay";
         device = <&pmw3610_tb>;
 
-        /* 必要に応じて軸補正 */
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;
+        /* 補正 → ジェスチャー の順で適用 */
+        input-processors = <&zip_input_transform INPUT_TRANSFORM_X_INVERT>,
+                           <&zip_mouse_gesture>;
 
-        /* 例：ジェスチャーレイヤ中だけ移動→スクロール化
-        gest_only {
-            layers = <_GEST>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
-        };
+        /* 例：ジェスチャーレイヤ中だけ移動→スクロール化（必要時に有効化）
+        // gest_only {
+        //     layers = <7>;
+        //     input-processors = <&zip_xy_to_scroll_mapper>;
+        // };
         */
     };
 
@@ -123,8 +123,6 @@
     };
 }; /* / */
 
-
-/* ---------- pinctrl（SPI0 のピン割り当て：必須） ---------- */
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
@@ -142,8 +140,7 @@
             low-power-enable;
         };
     };
-}; /* ← セミコロン忘れがち */
-
+}; 
 
 /* ---------- PMW3610（SPI0 配下） ---------- */
 &spi0 {
@@ -159,7 +156,6 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
 
-        /* ← ここを修正（必須プロパティ） */
         evt-type      = <INPUT_EV_REL>;
         x-input-code  = <INPUT_REL_X>;
         y-input-code  = <INPUT_REL_Y>;
@@ -171,17 +167,4 @@
         /* cpi = <1600>; // ドライバが対応していれば解像度指定 */
         status = "okay";
     };
-};
-
-
-trackball_central_listener: trackball_central_listener {
-    compatible = "zmk,input-listener";
-    status = "okay";
-    device = <&pmw3610_tb>;
-
-    input-processors = <
-        &zip_input_transform INPUT_TRANSFORM_X_INVERT
-    >, <
-        &zip_mouse_gesture
-    >;
 };
