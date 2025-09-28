@@ -98,6 +98,18 @@
         };
     };
 
+/ {
+    layer_listeners {
+        compatible = "zmk,layer-listeners";
+
+        // Layer 7 に入ったらジェスチャーON、抜けたらOFF
+        gesture_on_l7 {
+            layers = <7>;
+            bindings = <&mouse_gesture_on &mouse_gesture_off>;
+        };
+    };
+};
+
     left_encoder: encoder_left {
         compatible = "alps,ec11";
         a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
