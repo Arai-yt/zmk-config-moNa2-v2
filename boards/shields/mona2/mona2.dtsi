@@ -98,7 +98,6 @@
         };
     };
 
-/ {
     layer_listeners {
         compatible = "zmk,layer-listeners";
 
@@ -108,7 +107,6 @@
             bindings = <&mouse_gesture_on &mouse_gesture_off>;
         };
     };
-};
 
     left_encoder: encoder_left {
         compatible = "alps,ec11";
