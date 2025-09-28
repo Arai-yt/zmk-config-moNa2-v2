@@ -92,7 +92,7 @@
         status = "okay";
         device = <&pmw3610_tb>;
 
-　　    scroll_on_l6 {
+        scroll_on_l6 {
         layers = <6>;
         input-processors = <
             /* 必要なら“ナチュラルスクロール”用に Y を反転 */
