@@ -1,13 +1,12 @@
-/* Windows 用ジェスチャー定義（layers は書かない／リスナー側で制御） */
 &zip_mouse_gesture {
     enable-eager-mode;
-    stroke-size = <280>;
-    movement-threshold = <7>;
-    idle-timeout-ms = <220>;
-    gesture-cooldown-ms = <140>;
+    stroke-size = <260>;
+    movement-threshold = <6>;
+    idle-timeout-ms = <200>;
+    gesture-cooldown-ms = <120>;
 
-    prev_tab  { pattern = <GESTURE_LEFT>;  bindings = <&kp LC(LS(TAB))>; };
-    next_tab  { pattern = <GESTURE_RIGHT>; bindings = <&kp LC(TAB)>;     };
-    new_tab   { pattern = <GESTURE_UP>;    bindings = <&kp LC(T)>;       };
-    close_tab { pattern = <GESTURE_DOWN>;  bindings = <&kp LC(W)>;       };
+    left_test  { pattern = <GESTURE_LEFT>;  bindings = <&kp A>; };
+    right_test { pattern = <GESTURE_RIGHT>; bindings = <&kp D>; };
+    up_test    { pattern = <GESTURE_UP>;    bindings = <&kp W>; };
+    down_test  { pattern = <GESTURE_DOWN>;  bindings = <&kp S>; };
 };
