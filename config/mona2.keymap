@@ -88,13 +88,11 @@
         gesture_ht: gesture_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "GESTURE_HT";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&mouse_gesture>;
+            #binding-cells = <1>;          // ← 1 にする（ダミー 0 が不要に）
+            flavor = "balanced";           // 取りこぼしが減る。もっとタップ優先なら "tap-preferred"
+            tapping-term-ms = <220>;       // 200→220〜250でタップが出やすくなる
+            bindings = <&kp>, <&mouse_gesture>;   // tap=&kp / hold=&mouse_gesture
         };
-
-
     };
 
     keymap {
@@ -102,7 +100,7 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R        &kp T                                                     &kp Y        &kp U  &kp I      &gesture_ht 0 O  &lt 6 P
+&kp Q             &kp W         &kp E         &kp R        &kp T                                                     &kp Y        &kp U  &kp I      &gesture_ht O 0  &lt 6 P
 &kp A             &kp S         &kp D         &kp F        &kp G                                  &kp SEMICOLON      &kp H        &kp J  &kp K      &kp L            &lt 5 MINUS
 &mt LEFT_SHIFT Z  &kp X         &kp C         &kp V        &kp B        &kp TAB                   &kp DOUBLE_QUOTES  &kp N        &kp M  &kp COMMA  &kp DOT          &mt RIGHT_SHIFT SLASH
 &kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 4 LANG2  &lt 2 SPACE  &lt_to_layer_0 3 LANG1    &kp BACKSPACE      &lt 1 ENTER                                     &kp ESCAPE
