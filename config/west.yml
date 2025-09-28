@@ -14,6 +14,8 @@ manifest:
       url-base: https://github.com/zettaface
     - name: kot149
       url-base: https://github.com/kot149
+    - name: ssbb
+      url-base: https://github.com/ssbb
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -33,6 +35,9 @@ manifest:
       revision: main
     - name: zmk-mouse-gesture
       remote: kot149
+      revision: v1
+    - name: zmk-listeners
+      remote: ssbb
       revision: v1
   self:
     path: config
