@@ -86,7 +86,7 @@
                     <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
-    /* 右手（中央）トラックボールの Input Listener（定義は最小） */
+    //right hand trackball
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "okay";
@@ -120,7 +120,11 @@
         a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <24>;
-        status = "okay";
+        status = "disabled";
+    };
+
+    right_encoder: encoder_right {
+        status = "disabled";
     };
 
     sensors: sensors {
@@ -128,7 +132,7 @@
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <10>;
     };
-}; /* / */
+};
 
 /* ---------- pinctrl（SPI0 のピン割り当て） ---------- */
 &pinctrl {
