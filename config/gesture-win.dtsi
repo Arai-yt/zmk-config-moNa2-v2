@@ -1,23 +1,26 @@
-#include <mouse-gesture.dtsi>
-
 &zip_mouse_gesture {
-    stroke-size = <300>;
-    enable-eager-mode;
+    // ---- 調整ポイント ----
+    stroke-size = <300>;          // 線の長さのしきい値（小さいほど短い動きで発火）
+    movement-threshold = <8>;     // 微小な揺れの無視量（大きいほど鈍感）
+    idle-timeout-ms = <250>;      // 次のストロークに移る待ち時間
+    gesture-cooldown-ms = <120>;  // 連続発火のクールダウン
+    enable-eager-mode;            // マッチした瞬間に即発火（まずはON推奨）
 
+    // ---- パターン → 送るキー（Windows）----
     prev_tab {
         pattern = <GESTURE_LEFT>;
-        bindings = <&kp LC(LS(TAB))>; // Ctrl+Shift+Tab
+        bindings = <&kp LC(LS(TAB))>;   // Ctrl + Shift + Tab
     };
     next_tab {
         pattern = <GESTURE_RIGHT>;
-        bindings = <&kp LC(TAB)>;     // Ctrl+Tab
+        bindings = <&kp LC(TAB)>;       // Ctrl + Tab
     };
     new_tab {
         pattern = <GESTURE_UP>;
-        bindings = <&kp LC(T)>;       // Ctrl+T
+        bindings = <&kp LC(T)>;         // Ctrl + T
     };
     close_tab {
         pattern = <GESTURE_DOWN>;
-        bindings = <&kp LC(W)>;       // Ctrl+W
+        bindings = <&kp LC(W)>;         // Ctrl + W
     };
-};
+}
