@@ -4,7 +4,7 @@
 #include <physical_layouts.dtsi>
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <mouse-gesture.dtsi>   /* kot149 モジュールの dtsi */
+#include <mouse-gesture.dtsi>   /* kot149 モジュール */
 
  / {
     chosen {
@@ -18,7 +18,7 @@
         kscan = <&kscan0>;
         transform = <&default_transform>;
 
-        keys  /*                    w   h    x    y     rot   rx   ry */
+        keys
             = <&key_physical_attrs 100 100    0    0      0    0    0>
             , <&key_physical_attrs 100 100  100    0      0    0    0>
             , <&key_physical_attrs 100 100  200    0      0    0    0>
@@ -86,17 +86,11 @@
                     <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
-    /* 右手（中央）トラックボールの Input Listener */
+    /* 右手（中央）トラックボールの Input Listener（定義は最小） */
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&pmw3610_tb>;
-
-        /* ← Layer 7 の間だけ zip_mouse_gesture を有効化 */
-        gest_on_l7 {
-            layers = <7>;
-            input-processors = <&zip_mouse_gesture>;
-        };
     };
 
     left_encoder: encoder_left {
@@ -151,7 +145,7 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
 
-        /* ← 相対移動（XY）を使う設定 */
+        /* 相対移動（XY）を使う設定 */
         evt-type      = <INPUT_EV_REL>;
         x-input-code  = <INPUT_REL_X>;
         y-input-code  = <INPUT_REL_Y>;
@@ -160,5 +154,14 @@
          */
         /* cpi = <1600>; */
         status = "okay";
+    };
+};
+
+/* ── レイヤ限定の入力プロセッサ差し込み（オーバレイで分離） ── */
+&trackball_central_listener {
+    /* Layer 7 の間だけ zip_mouse_gesture を有効化 */
+    gest_on_l7 {
+        layers = <7>;
+        input-processors = <&zip_mouse_gesture>;
     };
 };
