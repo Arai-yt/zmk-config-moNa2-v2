@@ -115,19 +115,22 @@
         };
     };
 
-    left_encoder: encoder_left {
-        compatible = "alps,ec11";
-        a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <24>;
-        status = "disabled";
-    };
+/* 左エンコーダ：A/B の入力を念のためこの順に（逆なら後で戻す） */
+left_encoder: encoder_left {
+    compatible = "alps,ec11";
+    a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    steps = <24>;
+    status = "disabled";
+};
 
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;
-        triggers-per-rotation = <24>;
-    };
+/* キーマップ用センサー集約：左だけ、まず 24 で */
+sensors: sensors {
+    compatible = "zmk,keymap-sensors";
+    sensors = <&left_encoder>;
+    triggers-per-rotation = <24>;
+}
+
 };
 
 /* ---------- pinctrl（SPI0 のピン割り当て） ---------- */
