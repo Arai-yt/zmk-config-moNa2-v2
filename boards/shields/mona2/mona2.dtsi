@@ -95,6 +95,7 @@
         gest_on_l7 {
             layers = <7>;
             input-processors = <&zip_mouse_gesture>;
+　　　　　　 input-processors = <&zip_mouse_gesture &zip_xy_scaler 1 16>;
         };
     };
 
@@ -105,7 +106,6 @@
         gesture_on_l7 {
             layers = <7>;
             bindings = <&mouse_gesture_on &mouse_gesture_off>;
-            input-processors = <&zip_mouse_gesture &zip_xy_scaler 1 16>;
         };
     };
 
