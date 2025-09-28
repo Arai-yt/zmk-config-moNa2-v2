@@ -94,9 +94,9 @@
 
         scroll_on_l6 {
         layers = <6>;
-        input-processors = <&zip_xy_to_scroll_mapper
+        input-processors = <&zip_xy_scaler 1 4
                             &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
-                            &zip_xy_scaler 1 4>;
+                            &zip_xy_to_scroll_mapper>;
     };
 
         gest_on_l7 {
