@@ -94,14 +94,14 @@
 
         scroll_on_l6 {
         layers = <6>;
-        input-processors = <&zip_xy_to_scroll_mapper &zip_xy_scaler 1 4 >;
+        input-processors = <&zip_xy_to_scroll_mapper
+                            &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
+                            &zip_xy_scaler 1 16 >;
     };
 
         gest_on_l7 {
             layers = <7>;
-            input-processors = <&zip_mouse_gesture
-                                &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
-                                &zip_xy_scaler 1 16>;
+            input-processors = <&zip_mouse_gesture>;
         };
     };
 
