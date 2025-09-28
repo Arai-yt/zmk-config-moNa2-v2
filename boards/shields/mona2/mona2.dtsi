@@ -169,8 +169,8 @@
         evt-type      = <INPUT_EV_REL>;
         x-input-code  = <INPUT_REL_X>;
         y-input-code  = <INPUT_REL_Y>;
-        wheel-input-code  = <INPUT_REL_WHEEL>;
-        hwheel-input-code = <INPUT_REL_HWHEEL>;
+        //wheel-input-code  = <INPUT_REL_WHEEL>;
+        //hwheel-input-code = <INPUT_REL_HWHEEL>;
 
         /* cpi = <1600>; */
         status = "okay";
