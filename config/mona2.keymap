@@ -4,8 +4,7 @@
 #include <dt-bindings/zmk/pointing.h>
 #include "gesture-win.dtsi"
 
-/* ── 推奨：余計な #define は使わない（レイヤ名と衝突するため） ── */
-/* #define ZMK_POINTING_DEFAULT_SCRL_VAL 100  // 必要なら残してOK */
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
 &mt {
     flavor = "balanced";
@@ -13,7 +12,7 @@
 };
 
 &lt {
-    quick-tap-ms = <300>;
+    quick-tap-ms = <200>;
     flavor = "balanced";
 };
 
@@ -85,7 +84,6 @@
     keymap {
         compatible = "zmk,keymap";
 
-        /* ── Default Layer ── */
         default_layer {
             bindings = <
 &kp Q             &kp W         &kp E         &kp R        &kp T                                                     &kp Y        &kp U  &kp I      &lt 7 O       &lt 6 P
@@ -97,7 +95,6 @@
             sensor-bindings = <&scroll_up_down>;
         };
 
-        /* ── Layer 1 ── */
         layer_1 {
             bindings = <
 &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp NUMBER_4       &kp NUMBER_5                    &kp NUMBER_6  &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp NUMBER_0
@@ -109,7 +106,6 @@
             sensor-bindings = <&scroll_right_left>;
         };
 
-        /* ── Layer 2 ── */
         layer_2 {
             bindings = <
 &trans           &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &trans                          &kp CARET  &kp AMPERSAND  &kp ASTERISK  &kp MINUS  &kp UNDERSCORE
@@ -121,7 +117,6 @@
             sensor-bindings = <&scroll_up_down>;
         };
 
-        /* ── Layer 3 ── */
         layer_3 {
             bindings = <
 &trans    &trans          &kp UP_ARROW            &trans                   &trans                     &trans  &kp HOME        &kp UP_ARROW    &kp END          &trans
@@ -133,7 +128,6 @@
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
-        /* ── Layer 4 ── */
         layer_4 {
             bindings = <
 &mouse_gesture_toggle  &trans  &trans  &trans  &trans                         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
