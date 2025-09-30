@@ -1,11 +1,11 @@
 &zip_mouse_gesture {
     enable-eager-mode;
-    stroke-size = <100>;
+    stroke-size = <20>;
     movement-threshold = <6>;
     idle-timeout-ms = <100>;
     gesture-cooldown-ms = <120>;
 
-    prev_tab  { pattern = <GESTURE_LEFT>;  bindings = <&kp LC(LS(TAB))>; };
+    prev_tab  { pattern = <GESTURE_LEFT>;  bindings = <&kp LG(TAB)>; };
     next_tab  { pattern = <GESTURE_RIGHT>; bindings = <&kp LC(TAB)>;     };
     new_tab   { pattern = <GESTURE_UP>;    bindings = <&kp LC(T)>;       };
     close_tab { pattern = <GESTURE_DOWN>;  bindings = <&kp LC(W)>;       };
