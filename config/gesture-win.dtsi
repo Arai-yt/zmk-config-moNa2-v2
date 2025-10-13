@@ -7,6 +7,6 @@
 
     prev_tab  { pattern = <GESTURE_LEFT>;  bindings = <&kp LG(TAB)>; };
     next_tab  { pattern = <GESTURE_RIGHT>; bindings = <&kp LC(TAB)>;     };
-    new_tab   { pattern = <GESTURE_UP>;    bindings = <&kp LC(T)>;       };
+    task_view { pattern = <GESTURE_UP>;    bindings = <&kp LG(TAB);       };
     close_tab { pattern = <GESTURE_DOWN>;  bindings = <&kp LC(W)>;       };
 };
