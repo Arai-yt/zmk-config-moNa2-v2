@@ -63,11 +63,7 @@
 };
 
 &zip_temp_layer {
-    excluded-positions = <
-        17 // J
-        18 // K
-        19 // l
-    >;
+    excluded-positions = <17 19 18 7 30 29 31>;
 };
 
 // Overrides for the input listener node
