@@ -20,19 +20,9 @@
     combos {
         compatible = "zmk,combos";
 
-        layer4_ESC {
-            bindings = <&lt 4 ESC>;
-            key-positions = <39 38>;
-        };
-
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
-        };
-
         a {
-            bindings = <&kp A>;
-            key-positions = <17 19 18 7 30 29 31>;
+            bindings = <&kp LEFT_WIN>;
+            key-positions = <17 19 18>;
         };
     };
 
