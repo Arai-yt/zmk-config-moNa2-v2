@@ -2,8 +2,8 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include "gesture_L7.dtsi"
-#include "gesture_L8.dtsi"
+#include "config/gesture/gesture-win.dtsi"
+#include "config/gesture/gesture_L8.dtsi"
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
