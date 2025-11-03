@@ -76,17 +76,6 @@
             tap-ms = <20>;
             bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
         };
-
-        /* 必要なら残してOK（今回は使わない）:
-        gesture_ht: gesture_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "GESTURE_HT";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <230>;
-            bindings = <&kp>, <&mouse_gesture>;
-        };
-        */
     };
 
     keymap {
