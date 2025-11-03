@@ -24,6 +24,11 @@
             bindings = <&kp LEFT_WIN>;
             key-positions = <17 19 18>;
         };
+
+        Gesture_L8 {
+            bindings = <&lt 8 LGUI>;
+            key-positions = <8 9>;
+        };
     };
 
     macros {
@@ -164,7 +169,16 @@
             sensor-bindings = <&scroll_up_down>;
         };
 
-        Gesture {
+        Gesture_L7 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
+            >;
+        };
+
+        Gesture_L8 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
