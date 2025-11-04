@@ -1,6 +1,6 @@
 / {
   zip_mouse_gesture_l8: zip_mouse_gesture_l8 {
-    compatible = "zmk,zip-mouse-gesture";
+    compatible = "zmk,input-processor-mouse-gesture";
     #input-processor-cells = <0>;  
     enable-eager-mode;
     stroke-size = <5>;
