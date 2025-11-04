@@ -58,6 +58,20 @@
                 <&macro_release>,
                 <&kp LALT>;
         };
+
+        div_mark: div_mark {
+            compatible = "zmk,behavior-macro";
+            label = "DIV_MARK";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings =
+                <&macro_press   &kp LALT>,
+                <&macro_tap     &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N7>,
+                <&macro_release &kp LALT>;
+        };
+    };
+
     };
 
     behaviors {
