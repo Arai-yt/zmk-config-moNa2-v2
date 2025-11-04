@@ -1,12 +1,16 @@
-&zip_mouse_gesture {
-    enable-eager-mode;
-    stroke-size = <5>;
-    movement-threshold = <6>;
-    idle-timeout-ms = <100>;
-    gesture-cooldown-ms = <120>;
+/ {
+    zip_mouse_gesture_l8: zip_mouse_gesture_l8 {
+        compatible = "zmk,zip-mouse-gestures";
 
-    prev_tab   { pattern = <GESTURE_LEFT>;  bindings = <&kp LG(LC(LEFT))>;  };
-    next_tab   { pattern = <GESTURE_RIGHT>; bindings = <&kp LG(LC(RIGHT))>; };
-    task_view  { pattern = <GESTURE_UP>;    bindings = <&kp LG(TAB)>;       };
-    close_tab  { pattern = <GESTURE_DOWN>;  bindings = <&kp LC(W)>;         };
+        enable-eager-mode;
+        stroke-size = <5>;
+        movement-threshold = <6>;
+        idle-timeout-ms = <100>;
+        gesture-cooldown-ms = <120>;
+
+        prev_tab   { pattern = <GESTURE_LEFT>;  bindings = <&kp LC(LS(TAB))>; };
+        next_tab   { pattern = <GESTURE_RIGHT>; bindings = <&kp LC(TAB)>;     };
+        task_view  { pattern = <GESTURE_UP>;    bindings = <&kp LG(TAB)>;     };
+        close_tab  { pattern = <GESTURE_DOWN>;  bindings = <&kp LC(W)>;       };
+    };
 };
