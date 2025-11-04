@@ -106,7 +106,7 @@
 
         gest_on_l8 {
             layers = <8>;
-            input-processors = <&zip_mouse_gesture &zip_xy_scaler 0 1>;
+            input-processors = <&zip_mouse_gesture_l8 &zip_xy_scaler 0 1>;
         };
     };
 
