@@ -137,13 +137,13 @@
 
         layer_3 {
             bindings = <
-&kp PAGE_UP       &trans    &kp UP_ARROW  &trans           &kp PAGE_DOWN                         &trans  &trans          &kp UP_ARROW    &kp END          &trans
-&kp HOME          &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp END                      &trans   &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
-&kp LC(LG(LEFT))  &trans    &trans        &trans           &kp LC(LG(RIGHT))  &trans    &trans   &trans  &kp DELETE      &kp PAGE_UP     &kp PAGE_DOWN    &trans
-&trans            &trans    &trans        &trans           &trans             &trans    &kp DEL  &trans                                                   &trans
+&kp PAGE_UP  &trans    &kp UP_ARROW  &trans           &kp PAGE_DOWN                     &trans  &trans              &kp LG(UP_ARROW)    &trans               &trans
+&kp HOME     &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp END                  &trans   &trans  &kp LG(LEFT_ARROW)  &kp LG(DOWN_ARROW)  &kp LG(RIGHT_ARROW)  &trans
+&trans       &trans    &trans        &trans           &trans         &trans    &trans   &trans  &trans              &trans              &trans               &trans
+&trans       &trans    &trans        &trans           &trans         &trans    &kp DEL  &trans                                                               &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
         };
 
         layer_4 {
@@ -159,10 +159,10 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans    &kp LC(T)  &trans    &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &mkp MB1  &mkp MB3   &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &mkp MB4  &kp LC(W)  &mkp MB5  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                                 &trans
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans            &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &mkp MB4  &trans    &mkp MB5  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                                &trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -189,6 +189,15 @@
         };
 
         Gesture_L8 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
+            >;
+        };
+
+        Gesture_L9 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
