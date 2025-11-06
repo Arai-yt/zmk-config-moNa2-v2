@@ -94,7 +94,7 @@
 
         dpi_low_on_l2 {
             layers = <2>;
-            input-processors = <&zip_xy_scaler 1 3 &zip_xy_to_mouse_mapper>;
+            input-processors = <&zip_xy_scaler 1 3>;
         };
 
         scroll_on_l6 {
