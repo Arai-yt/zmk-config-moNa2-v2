@@ -133,10 +133,10 @@
 
         layer_3 {
             bindings = <
-&kp PAGE_UP  &trans    &kp UP_ARROW  &trans           &kp PAGE_DOWN                                 &trans  &trans              &kp LG(UP_ARROW)    &trans               &trans
-&kp HOME     &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp END                  &kp PRINTSCREEN      &trans  &kp LG(LEFT_ARROW)  &kp LG(DOWN_ARROW)  &kp LG(RIGHT_ARROW)  &trans
-&trans       &trans    &trans        &trans           &trans         &trans    &kp LS(PRINTSCREEN)  &trans  &trans              &trans              &trans               &trans
-&trans       &trans    &trans        &trans           &trans         &trans    &kp DEL              &trans                                                               &trans
+&kp PAGE_UP  &trans    &kp UP_ARROW  &trans           &kp PAGE_DOWN                                     &trans  &trans              &kp LG(UP_ARROW)    &trans               &trans
+&kp HOME     &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp END                  &kp LC(LG(PRINTSCREEN))  &trans  &kp LG(LEFT_ARROW)  &kp LG(DOWN_ARROW)  &kp LG(RIGHT_ARROW)  &trans
+&trans       &trans    &trans        &trans           &trans         &trans    &kp LS(PRINTSCREEN)      &trans  &trans              &trans              &trans               &trans
+&trans       &trans    &trans        &trans           &trans         &trans    &kp DEL                  &trans                                                               &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
