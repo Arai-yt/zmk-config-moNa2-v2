@@ -23,12 +23,12 @@
         compatible = "zmk,combos";
 
         Gesture_L8 {
-            bindings = <&lt 8 LGUI>;
+            bindings = <&lt 8 LA(TAB)>;
             key-positions = <8 9>;
         };
 
         Gesture_L9 {
-            bindings = <&lt 9 LA(TAB)>;
+            bindings = <&lt 9 LEFT_WIN>;
             key-positions = <19 20>;
         };
     };
