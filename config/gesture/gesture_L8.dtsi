@@ -10,7 +10,7 @@
 
     vdesk_prev  { pattern = <GESTURE_LEFT>;  bindings = <&kp LG(LC(LEFT))>;  };
     vdesk_next  { pattern = <GESTURE_RIGHT>; bindings = <&kp LG(LC(RIGHT))>; };
-    task_view 　{ pattern = <GESTURE_UP>;    bindings = <&kp LG(TAB)>;       };
+    task_view   { pattern = <GESTURE_UP>;    bindings = <&kp LG(TAB)>;       };
     show_desktop{ pattern = <GESTURE_DOWN>;  bindings = <&kp LG(D)>;         };
   };
 };
