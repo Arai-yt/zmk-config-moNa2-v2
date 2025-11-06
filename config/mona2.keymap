@@ -4,6 +4,7 @@
 #include <dt-bindings/zmk/pointing.h>
 #include "gesture/gesture_L7.dtsi"
 #include "gesture/gesture_L8.dtsi"
+#include "gesture/gesture_L9.dtsi"
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
