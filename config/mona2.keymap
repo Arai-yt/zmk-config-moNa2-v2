@@ -1,4 +1,6 @@
-w#include <behaviors.dtsi>
+w
+
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
@@ -107,7 +109,7 @@ w#include <behaviors.dtsi>
             bindings = <
 &kp Q             &kp W         &kp E         &kp R        &kp T                                                     &kp Y        &kp U  &kp I      &kp O    &lt 6 P
 &kp A             &kp S         &kp D         &kp F        &kp G                                  &kp SEMICOLON      &kp H        &kp J  &kp K      &kp L    &lt 7 MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V        &kp B        &kp TAB                   &kp DOUBLE_QUOTES  &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V        &kp B        &lt 5 TAB                 &kp DOUBLE_QUOTES  &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
 &kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 4 LANG2  &lt 2 SPACE  &lt_to_layer_0 3 LANG1    &kp BACKSPACE      &lt 1 ENTER                             &lt 5 ESCAPE
             >;
 
@@ -138,10 +140,10 @@ w#include <behaviors.dtsi>
 
         layer_3 {
             bindings = <
-&kp PAGE_UP  &trans    &kp UP_ARROW  &trans           &kp PAGE_DOWN                     &trans  &trans              &kp LG(UP_ARROW)    &trans               &trans
-&kp HOME     &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp END                  &trans   &trans  &kp LG(LEFT_ARROW)  &kp LG(DOWN_ARROW)  &kp LG(RIGHT_ARROW)  &trans
-&trans       &trans    &trans        &trans           &trans         &trans    &trans   &trans  &trans              &trans              &trans               &trans
-&trans       &trans    &trans        &trans           &trans         &trans    &kp DEL  &trans                                                               &trans
+&kp PAGE_UP  &trans    &kp UP_ARROW  &trans           &kp PAGE_DOWN                                 &trans  &trans              &kp LG(UP_ARROW)    &trans               &trans
+&kp HOME     &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp END                  &kp PRINTSCREEN      &trans  &kp LG(LEFT_ARROW)  &kp LG(DOWN_ARROW)  &kp LG(RIGHT_ARROW)  &trans
+&trans       &trans    &trans        &trans           &trans         &trans    &kp LS(PRINTSCREEN)  &trans  &trans              &trans              &trans               &trans
+&trans       &trans    &trans        &trans           &trans         &trans    &kp DEL              &trans                                                               &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
