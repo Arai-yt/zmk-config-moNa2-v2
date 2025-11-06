@@ -8,8 +8,8 @@
     idle-timeout-ms = <100>;
     gesture-cooldown-ms = <120>;
 
-    vdesk_prev   { pattern = <GESTURE_LEFT>;  bindings = <&kp LG(LC(LEFT))>;  };
-    vdesk_next   { pattern = <GESTURE_RIGHT>; bindings = <&kp LG(LC(RIGHT))>; };
+    prev_tab    { pattern = <GESTURE_LEFT>;  bindings = <&kp LC(LS(TAB))>; };
+    next_tab    { pattern = <GESTURE_RIGHT>; bindings = <&kp LC(TAB)>;     };
     task_view  　{ pattern = <GESTURE_UP>;    bindings = <&kp LG(TAB)>;       };
     show_desktop { pattern = <GESTURE_DOWN>;  bindings = <&kp LG(D)>;         };
   };
