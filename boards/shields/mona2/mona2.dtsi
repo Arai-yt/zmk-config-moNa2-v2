@@ -108,6 +108,12 @@
             layers = <8>;
             input-processors = <&zip_mouse_gesture_l8 &zip_xy_scaler 0 1>;
         };
+
+        gest_on_l9 {
+            layers = <9>;
+            input-processors = <&zip_mouse_gesture_l9 &zip_xy_scaler 0 1>;
+        };
+
     };
 
     layer_listeners {
@@ -121,6 +127,11 @@
 
         gesture_on_l8 {
             layers = <8>;
+            bindings = <&mouse_gesture_on &mouse_gesture_off>;
+        };
+
+        gesture_on_l9 {
+            layers = <9>;
             bindings = <&mouse_gesture_on &mouse_gesture_off>;
         };
     };
