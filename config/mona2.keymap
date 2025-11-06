@@ -32,9 +32,9 @@
             key-positions = <8 9>;
         };
 
-        alt_tab {
-            bindings = <&kp LA(TAB)>;
-            key-positions = <18 19 20>;
+        Gesture_L9 {
+            bindings = <&lt 9 LA(TAB)>;
+            key-positions = <19 20>;
         };
     };
 
