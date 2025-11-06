@@ -8,9 +8,9 @@
     idle-timeout-ms = <100>;
     gesture-cooldown-ms = <120>;
 
-    focus_url        { pattern = <GESTURE_UP>;  bindings = <&kp LC(L)>;              };
-    vdesk_send_next  { pattern = <GESTURE_DOWN>; bindings = <&kp LG(LC(LS(RIGHT)))>; };
-    taskbar_prev     { pattern = <GESTURE_LEFT>;    bindings = <&kp LG(LC(T))>;      };
-    taskbar_next     { pattern = <GESTURE_RIGHT>;  bindings = <&kp LG(T)>;           };
+    focus_url        { pattern = <GESTURE_UP>;  bindings = <&kp LC(L)>;      };
+    vdesk_send_next  { pattern = <GESTURE_DOWN>; bindings = <&kp LG(LC(S))>; };
+    taskbar_prev     { pattern = <GESTURE_LEFT>;    bindings = <&kp LEFT>;   };
+    taskbar_next     { pattern = <GESTURE_RIGHT>;  bindings = <&kp LG(T)>;   };
   };
 };
