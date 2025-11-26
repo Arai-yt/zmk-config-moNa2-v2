@@ -64,7 +64,7 @@
 };
 
 &zip_temp_layer {
-    excluded-positions = <1>;
+    excluded-positions = <17 19 18 7 30 29 31>;
     // require-prior-idle-ms = <300>;  // 好きなmsに調整（例: 300ms）
 };
 
