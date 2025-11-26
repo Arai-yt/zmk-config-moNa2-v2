@@ -31,6 +31,11 @@
             bindings = <&lt 9 LEFT_WIN>;
             key-positions = <19 20>;
         };
+
+        a {
+            bindings = <&none>;
+            key-positions = <17 29 18 19 31>;
+        };
     };
 
     macros {
