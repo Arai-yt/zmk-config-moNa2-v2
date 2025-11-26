@@ -65,7 +65,7 @@
 
 &zip_temp_layer {
     excluded-positions = <17 18 19 29 31>;
-    // require-prior-idle-ms = <300>;  // 好きなmsに調整（例: 300ms）
+    require-prior-idle-ms = <300>;  // 好きなmsに調整（例: 300ms）
 };
 
 // Overrides for the input listener node
