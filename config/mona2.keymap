@@ -7,6 +7,7 @@
 #include "gesture/gesture_L9.dtsi"
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
+#define MOUSE 5
 
 &mt {
     flavor = "balanced";
@@ -135,8 +136,6 @@
             quick-tap-ms = <200>;
         };
     };
-
-
 
     };
 
