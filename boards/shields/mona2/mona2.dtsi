@@ -189,7 +189,7 @@
     cs-gpios = <&xiao_d 10 GPIO_ACTIVE_LOW>;
 
     pmw3610_tb: pmw3610@0 {
-        compatible = "pixart,pmw3610";
+        compatible = "pixart,pmw3610-alt";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
